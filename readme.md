@@ -26,8 +26,3 @@ El sistema se compone de un entorno ROS2 interactuando mediante tópicos y servi
 * **Tópicos y Mensajes:** El nodo publica mensajes de tipo `Twist` (velocidad lineal y angular) en el tópico de movimiento, al cual el simulador está suscrito.
 * **Servicios ROS:** Se han implementado servidores que modifican las variables internas del nodo para pausar, reanudar y reiniciar el comportamiento en tiempo real sin interrumpir el proceso principal.
 
-## 3. Práctica de Visión y Cámaras (PBI 1.5)
-A continuación se detallan los resultados de la configuración física de los equipos ópticos:
-* **Rango de visión:** Se ha utilizado el software de control para cuantificar el rango visual utilizando al menos dos ópticas diferentes.
-* **Calibración de imagen:** Se han ajustado de forma manual los parámetros de apertura, tiempo de exposición, calibración de blancos y de colores.
-* **Lentes y Filtros:** Se ha acoplado un tubo extensor para enfocar correctamente y lograr zoom en el objetivo, y se han aplicado filtros ópticos que permiten capturar imágenes donde solamente es visible la luz láser.
