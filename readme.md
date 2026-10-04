@@ -6,7 +6,7 @@ Este repositorio contiene el workspace de ROS2 para el Sprint 1, cumpliendo con 
 **Requisitos:** Ubuntu 22.04 y ROS2 Humble.
 
 **Instalación y Compilación:**
-1. Clonar el repositorio: `git clone https://github.com/jgarrod3/G05_Proyectos3.git ~/g05_prii3_ws`
+1. Clonar el repositorio: `git clone https://github.com/jgarrod3/G05_Proyectos3.git`
 2. Compilar: `cd ~/g05_prii3_ws && colcon build`
 3. Cargar entorno: `source /opt/ros/humble/setup.bash && source install/setup.bash`
 
