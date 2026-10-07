@@ -1,15 +1,12 @@
 import math
 import rclpy
 from rclpy.node import Node
-from geometry_msgs.msg import Twist
 from sensor_msgs.msg import LaserScan
+from std_srvs.srv import SetBool
 
 class CollisionAvoidance(Node):
     def __init__(self):
         super().__init__('collision_avoidance')
-
-        self.publisher = self.create_publisher(Twist, '/cmd_vel', 10)
-
         self.subscription = self.create_subscription(
             LaserScan,
             '/scan',
@@ -17,6 +14,16 @@ class CollisionAvoidance(Node):
             10
         )
 
+        self.cliente_pausa = self.create_client(
+            SetBool,
+            'pause_resume_drawing'
+        )
+        while not self.cliente_pausa.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info(
+                'Esperando al servicio pause_resume_drawing...'
+    )
+        
+        self.obstaculo_detectado = False
         self.distancia_segura = 0.30
 
     def callback_lidar(self, msg):
@@ -31,10 +38,18 @@ class CollisionAvoidance(Node):
         ]
         min_distancia = min(distancias_validas, default=float('inf'))
         if min_distancia < self.distancia_segura:
-            movimiento = Twist()
-            movimiento.linear.x = 0.0
-            movimiento.angular.z = 0.0
-            self.publisher.publish(movimiento)
+            if not self.obstaculo_detectado:
+                request = SetBool.Request()
+                request.data = True
+                self.cliente_pausa.call_async(request)
+                self.obstaculo_detectado = True
+
+        else:
+            if self.obstaculo_detectado:
+                request = SetBool.Request()
+                request.data = False
+                self.cliente_pausa.call_async(request)
+                self.obstaculo_detectado = False
 
 def main(args=None):
     rclpy.init(args=args)
