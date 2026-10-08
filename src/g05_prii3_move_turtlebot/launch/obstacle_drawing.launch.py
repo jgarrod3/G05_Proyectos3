@@ -6,8 +6,8 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='g05_prii3_move_turtlebot',
-            executable='spawn_cubo',
-            name='spawn_cubo',
+            executable='spawn_cubo_fijo',
+            name='spawn_cubo_fijo',
             output='screen'
         ),
 

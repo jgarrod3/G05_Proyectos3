@@ -46,7 +46,7 @@ class ObstacleAvoidance(Node):
     def callback_lidar(self, msg):
         frente = self.minimo_en_sector(msg, -0.35, 0.35)
 
-        if frente < 0.5:
+        if frente < 0.75:
             self.esquivando = True
 
             orden_segura = Twist()

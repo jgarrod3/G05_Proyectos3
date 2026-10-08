@@ -33,6 +33,7 @@ setup(
             'draw_number = g05_prii3_move_turtlebot.draw_number:main',
             'collision_avoidance = g05_prii3_move_turtlebot.collision_avoidance:main',
             'spawn_cubo = g05_prii3_move_turtlebot.spawn_cubo:main',
+            'spawn_cubo_fijo = g05_prii3_move_turtlebot.spawn_cubo_fijo:main',
             'obstacle_avoidance = g05_prii3_move_turtlebot.obstacle_avoidance:main',
         ],
     },
