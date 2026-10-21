@@ -1,0 +1,29 @@
+%YAML 1.2
+---
+matriz_camara: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 468.32006954882473, 0., 319.5, 0., 468.32006954882473, 179.5,
+       0., 0., 1. ]
+distorsion: !!opencv-matrix
+   rows: 1
+   cols: 5
+   dt: d
+   data: [ -0.44466459412652926, 0.20326127545405703, 0., 0., 0. ]
+nueva_matriz_camara: !!opencv-matrix
+   rows: 3
+   cols: 3
+   dt: d
+   data: [ 364.65437963371966, 0., 319.5, 0., 435.72136268329672, 179.5,
+       0., 0., 1. ]
+roi: !!opencv-nd-matrix
+   sizes: [ 4 ]
+   dt: i
+   data: [ 0, 0, 639, 359 ]
+tam_casilla_mm: 40
+esquinas_internas: !!opencv-nd-matrix
+   sizes: [ 2 ]
+   dt: i
+   data: [ 9, 13 ]
+error_calibracion: 5.5297146414063905
