@@ -12,7 +12,7 @@ class DrawNumber(Node):
         self.timer = self.create_timer(0.1, self.publicar_movimiento)
 
         #Resetea la posición del robot al arrancar
-        self.client_reset = self.create_client(Empty, '/reset_world')
+        #self.client_reset = self.create_client(Empty, '/reset_world')
         #while not self.client_reset.wait_for_service(timeout_sec=1.0):
          #   self.get_logger().info('Esperando servicio /reset_world...')
         #self.client_reset.call_async(Empty.Request())
