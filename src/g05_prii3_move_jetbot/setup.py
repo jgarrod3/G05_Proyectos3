@@ -30,7 +30,7 @@ setup(
         'console_scripts': [
             'draw_number = g05_prii3_move_jetbot.draw_number:main',
             'collision_avoidance = g05_prii3_move_jetbot.collision_avoidance:main',
-            'obstacle_avoidance_avoidance = g05_prii3_move_jetbot.obstacle_avoidance:main'
+            'obstacle_avoidance = g05_prii3_move_jetbot.obstacle_avoidance:main'
         ],
     },
 )
