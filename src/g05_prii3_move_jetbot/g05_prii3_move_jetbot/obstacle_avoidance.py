@@ -70,8 +70,9 @@ class ObstacleAvoidance(Node):
         distancias_validas = []
 
         for i, distancia in enumerate(scan.ranges):
-            angulo = scan.angle_min + i * scan.angle_increment
-
+            angulo = scan.angle_min + i * scan.angle_increment + math.pi
+            angulo = math.atan2(math.sin(angulo), math.cos(angulo))
+            
             if angulo_inicio <= angulo <= angulo_fin:
                 if (
                     not math.isinf(distancia)
