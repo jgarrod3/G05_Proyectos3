@@ -1,0 +1,13 @@
+material f1l3_aruco_5_material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture f1l3_aruco_5.png
+      }
+    }
+  }
+}
