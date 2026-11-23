@@ -11,15 +11,15 @@ from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
 # Poses en el frame "map" del mapa real (maps/f1l3.yaml), formato (x, y, yaw).
-INITIAL_POSE = (-2.6, 15.7, 3.14)  # pasillo, mirando hacia la puerta del lab
+INITIAL_POSE = (-4.75, 14.35, -3.05)  # pasillo (equivale al spawn del simulador)
 
-DOOR_POSE = (-8.3, 14.6, -1.57)  # en el pasillo, mirando hacia la puerta del lab
+DOOR_POSE = (-8.35, 13.63, -1.48)  # en el pasillo, mirando hacia la puerta del lab
 
 # ID ArUco -> pose final dentro del laboratorio (frame map)
 ARUCO_POSES = {
-    5: (-7.3, 8.2, -1.57),   # lado derecho del laboratorio, junto a la entrada
-    6: (-1.2, -0.5, 0.0),    # esquina izquierda del fondo del laboratorio
-    17: (-1.2, 7.1, 0.0),    # lado izquierdo del laboratorio
+    5: (-1.65, 7.59, 0.09),
+    6: (-0.40, 0.18, 0.09),
+    17: (-6.52, 0.14, -1.48),
 }
 
 DETECT_TIMEOUT = 20.0  # s

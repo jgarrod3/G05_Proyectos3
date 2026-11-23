@@ -7,9 +7,9 @@ from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
 # Poses en el frame "map" del mapa real (maps/f1l3.yaml), formato (x, y, yaw).
-INITIAL_POSE = (-2.6, 15.7, 3.14)  # pasillo, mirando hacia la puerta del lab
+INITIAL_POSE = (-4.75, 14.35, -3.05)  # pasillo (equivale al spawn del simulador)
 
-GOAL_POSE = (-5.7, 8.1, -1.57)  # centro del laboratorio
+GOAL_POSE = (-5.09, 6.79, -1.48)  # centro del laboratorio
 
 
 def make_pose(nav, x, y, yaw):
