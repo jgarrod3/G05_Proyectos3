@@ -1,4 +1,4 @@
-# JetBot real: pasillo -> puerta -> leer ArUco (DICT_5X5_100) -> pose final según el ID.
+# JetBot real: pasillo -> puerta -> leer ArUco (DICT_4X4_50) -> pose final según el ID.
 import math
 import time
 
@@ -66,7 +66,7 @@ def main():
         return
 
     # --- Detección del ArUco con la cámara del robot ---
-    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
+    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
     if hasattr(cv2.aruco, 'ArucoDetector'):
         # OpenCV >= 4.7
         detector = cv2.aruco.ArucoDetector(dictionary, cv2.aruco.DetectorParameters())
