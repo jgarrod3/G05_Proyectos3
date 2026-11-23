@@ -5,6 +5,7 @@ import time
 import cv2
 import rclpy
 from cv_bridge import CvBridge
+from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image
 
 from geometry_msgs.msg import PoseStamped
@@ -81,7 +82,7 @@ def main():
     def on_image(msg):
         if found:
             return
-        gray = bridge.imgmsg_to_cv2(msg, 'mono8')
+        gray = cv2.cvtColor(bridge.imgmsg_to_cv2(msg, 'bgr8'), cv2.COLOR_BGR2GRAY)
         _, ids, _ = detect(gray)
         if ids is not None:
             for i in ids.flatten():
@@ -93,7 +94,8 @@ def main():
 
     # Tópico de la cámara del JetBot (cambiar con: --ros-args -p image_topic:=...)
     image_topic = nav.declare_parameter('image_topic', '/image_raw').value
-    sub = nav.create_subscription(Image, image_topic, on_image, 10)
+    # best-effort: compatible con cámaras que publican reliable o best-effort
+    sub = nav.create_subscription(Image, image_topic, on_image, qos_profile_sensor_data)
     nav.get_logger().info('Buscando ArUco en la puerta...')
     t0 = time.time()
     while not found and time.time() - t0 < DETECT_TIMEOUT:
