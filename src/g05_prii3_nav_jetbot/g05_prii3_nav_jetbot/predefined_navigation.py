@@ -6,10 +6,10 @@ import rclpy
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
-# Poses en el frame "map" (x, y, yaw). El origen del mapa es donde arranca el robot.
-INITIAL_POSE = (0.0, 0.0, 0.0)  # pasillo (spawn del robot)
+# Poses en el frame "map" del mapa real (maps/f1l3.yaml), formato (x, y, yaw).
+INITIAL_POSE = (-2.6, 15.7, 3.14)  # pasillo, mirando hacia la puerta del lab
 
-GOAL_POSE = (1.0, 7.5, 1.57)  # dentro del laboratorio (frame map)
+GOAL_POSE = (-5.7, 8.1, -1.57)  # centro del laboratorio
 
 
 def make_pose(nav, x, y, yaw):

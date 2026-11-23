@@ -10,16 +10,16 @@ from sensor_msgs.msg import Image
 from geometry_msgs.msg import PoseStamped
 from nav2_simple_commander.robot_navigator import BasicNavigator, TaskResult
 
-# Poses en el frame "map" (x, y, yaw). El origen del mapa es donde arranca el robot.
-INITIAL_POSE = (0.0, 0.0, 0.0)  # pasillo (spawn del robot)
+# Poses en el frame "map" del mapa real (maps/f1l3.yaml), formato (x, y, yaw).
+INITIAL_POSE = (-2.6, 15.7, 3.14)  # pasillo, mirando hacia la puerta del lab
 
-DOOR_POSE = (3.65, 0.4, 1.57)  # en el pasillo, mirando hacia la puerta del lab
+DOOR_POSE = (-8.3, 14.6, -1.57)  # en el pasillo, mirando hacia la puerta del lab
 
 # ID ArUco -> pose final dentro del laboratorio (frame map)
 ARUCO_POSES = {
-    5: (-2.5, 7.0, 3.14),
-    6: (-3.1, 14.5, 3.14),  # esquina izquierda del fondo del laboratorio
-    17: (3.0, 14.0, 1.57),
+    5: (-7.3, 8.2, -1.57),   # lado derecho del laboratorio, junto a la entrada
+    6: (-1.2, -0.5, 0.0),    # esquina izquierda del fondo del laboratorio
+    17: (-1.2, 7.1, 0.0),    # lado izquierdo del laboratorio
 }
 
 DETECT_TIMEOUT = 20.0  # s
