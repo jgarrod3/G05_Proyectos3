@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Diagnóstico ArUco: python3 scripts_diag_aruco.py [topic]   (por defecto /image_raw)
 # Muestra frames recibidos, encoding/resolución y prueba varios diccionarios.
+import os
 import sys
 
 import cv2
@@ -51,7 +52,7 @@ class Diag(Node):
             self.get_logger().info(f'frame {self.n}: nada (candidatos rechazados: {len(rejected)})',
                                    throttle_duration_sec=2.0)
         if self.n % 30 == 1:  # guarda un frame de vez en cuando para revisarlo
-            cv2.imwrite('/home/juan/aruco_frame.png', frame)
+            cv2.imwrite(os.path.expanduser('~/aruco_frame.png'), frame)
         cv2.imshow('aruco_diag', frame)
         cv2.waitKey(1)
 
