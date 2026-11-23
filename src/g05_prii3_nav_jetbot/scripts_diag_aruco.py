@@ -50,6 +50,8 @@ class Diag(Node):
         else:
             self.get_logger().info(f'frame {self.n}: nada (candidatos rechazados: {len(rejected)})',
                                    throttle_duration_sec=2.0)
+        if self.n % 30 == 1:  # guarda un frame de vez en cuando para revisarlo
+            cv2.imwrite('/home/juan/aruco_frame.png', frame)
         cv2.imshow('aruco_diag', frame)
         cv2.waitKey(1)
 
