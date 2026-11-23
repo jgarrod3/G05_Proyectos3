@@ -18,7 +18,7 @@ DOOR_POSE = (3.65, 0.4, 1.57)  # en el pasillo, mirando hacia la puerta del lab
 # ID ArUco -> pose final dentro del laboratorio (frame map)
 ARUCO_POSES = {
     5: (-2.5, 7.0, 3.14),
-    6: (-3.1, 14.5, 3.14),  # esquina izquierda del fondo del laboratorio
+    6: (-3.1, 14.5, 3.14),  
     17: (3.0, 14.0, 1.57),
 }
 

@@ -67,7 +67,14 @@ def main():
 
     # --- Detección del ArUco con la cámara del robot ---
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
-    detector = cv2.aruco.ArucoDetector(dictionary, cv2.aruco.DetectorParameters())
+    if hasattr(cv2.aruco, 'ArucoDetector'):
+        # OpenCV >= 4.7
+        detector = cv2.aruco.ArucoDetector(dictionary, cv2.aruco.DetectorParameters())
+        detect = detector.detectMarkers
+    else:
+        # OpenCV < 4.7 (la que trae el JetBot)
+        params = cv2.aruco.DetectorParameters_create()
+        detect = lambda img: cv2.aruco.detectMarkers(img, dictionary, parameters=params)
     bridge = CvBridge()
     found = []
 
@@ -75,7 +82,7 @@ def main():
         if found:
             return
         gray = bridge.imgmsg_to_cv2(msg, 'mono8')
-        _, ids, _ = detector.detectMarkers(gray)
+        _, ids, _ = detect(gray)
         if ids is not None:
             for i in ids.flatten():
                 if int(i) in ARUCO_POSES:
