@@ -8,8 +8,10 @@
 #    0.08 m/s: por debajo los motores no vencen el rozamiento y el robot se queda parado
 #    a pocos cm del objetivo ("Failed to make progress").
 #  - Frecuencias de control a 10 Hz: la Jetson no llega a 20 Hz.
-#  - Giro en el sitio a 0.5 rad/s: RPP gira a velocidad constante hasta entrar en la
-#    tolerancia, y mas rapido el robot se pasaba y oscilaba.
+#  - Giro en el sitio a 0.4 rad/s y aceleraciones suaves: RPP gira a velocidad constante hasta
+#    entrar en la tolerancia (mas rapido se pasaba y oscilaba), y al girar en el sitio las
+#    ruedas patinan: la odometria cree que ha girado menos o mas de lo real y el error de
+#    angulo se arrastra al resto del recorrido. Menos aceleracion = menos patinaje.
 #  - Tolerancias de llegada algo mas holgadas (10 cm / ~14 grados): sin localizador la pose
 #    sale solo de la odometria de ruedas, que deriva.
 #
@@ -123,9 +125,9 @@ controller_server:
       regulated_linear_scaling_min_speed: 0.08
       # Gira en el sitio para encarar el camino y para la orientación final
       use_rotate_to_heading: true
-      rotate_to_heading_angular_vel: 0.5  # RPP no frena al acercarse al angulo: mas lento = menos sobregiro
+      rotate_to_heading_angular_vel: 0.4  # RPP no frena al acercarse al angulo: mas lento = menos sobregiro y menos patinaje
       rotate_to_heading_min_angle: 0.5
-      max_angular_accel: 2.0
+      max_angular_accel: 1.0  # arrancar el giro suave para que las ruedas no patinen
       allow_reversing: false
       max_robot_pose_search_dist: 10.0
       use_interpolation: true
@@ -240,8 +242,8 @@ velocity_smoother:
     feedback: "OPEN_LOOP"
     max_velocity: [0.15, 0.0, 0.8]
     min_velocity: [-0.15, 0.0, -0.8]
-    max_accel: [1.0, 0.0, 2.5]
-    max_decel: [-1.0, 0.0, -3.0]  # frenar el giro rapido
+    max_accel: [0.5, 0.0, 1.0]  # arranques suaves: menos patinaje = odometria mas fiable
+    max_decel: [-0.8, 0.0, -2.0]  # frenar sin derrapar (a 0.4 rad/s se pasa ~2 grados)
     odom_topic: "odom"
     odom_duration: 0.1
     deadband_velocity: [0.0, 0.0, 0.0]
