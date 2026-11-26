@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='aruco_58'>
+    <static>false</static>
+    <link name='aruco_link'>
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <size>0.125 0.125 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name='aruco_visual'>
+        <geometry>
+          <box>
+            <size>0.125 0.125 0.001</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://aruco_58/materials/scripts/</uri>
+            <uri>model://aruco_58/materials/textures/</uri>
+            <name>aruco_58/aruco_58_material</name>
+          </script>
+        </material>
+      </visual>
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <iyy>0.00001</iyy>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+      <pose>0 0 0 0 0 1.5708</pose>
+    </link>
+  </model>
+</sdf>

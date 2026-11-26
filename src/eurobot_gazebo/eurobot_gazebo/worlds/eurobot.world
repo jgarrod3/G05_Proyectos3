@@ -1,0 +1,117 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="proyecto">
+
+    <!-- Coordenadas del reglamento oficial de Eurobot (G.1, "Top view of the playing area"):
+         origen en la esquina del tablero (lado amarillo), x a lo largo de los 3 m hacia el
+         lado azul, y a lo largo de los 2 m. El tablero ocupa x en [0, 3] e y en [0, 2] m;
+         su centro es (1.5, 1.0). ArUco fijos: 20 (0.6, 1.4), 21 (2.4, 1.4), 22 (0.6, 0.6),
+         23 (2.4, 0.6). -->
+
+    <!-- Física: la misma configuración que el mundo oficial de turtlebot3_gazebo.
+         Sin ella (valores por defecto de Gazebo: 50 iteraciones, sin reescalado de inercias)
+         las ruedas locas del TurtleBot3 (1 g) vuelven inestables los contactos y el robot
+         sigue girando y se desplaza solo con velocidad cero. -->
+    <physics type="ode">
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>150</iters>
+          <precon_iters>0</precon_iters>
+          <sor>1.400000</sor>
+          <use_dynamic_moi_rescaling>1</use_dynamic_moi_rescaling>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>2000.000000</contact_max_correcting_vel>
+          <contact_surface_layer>0.01000</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+
+    <!-- Luz -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Suelo -->
+    <include>
+      <uri>model://ground_plane</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <!-- ArUco 8 -->
+    <include>
+      <uri>model://aruco_8</uri>
+      <pose>2.9 1.9 0.1 0 0 0</pose>
+    </include>
+
+    <!-- Valla -->
+    <include>
+      <uri>model://valla</uri>
+      <pose>1.5 1.0 0 0 0 3.14159265</pose>
+    </include>
+
+    <!-- Suelo Eurobot -->
+    <include>
+      <uri>model://eurobot_ground</uri>
+      <pose>1.5 1.0 0 0 0 0</pose>
+    </include>
+
+
+    <!-- =============================== -->
+    <!--           Overhead Camera       -->
+    <!-- =============================== -->
+
+    <model name='overhead_camera'>
+      <static>1</static>
+      <pose>1.563362 2.014103 1.520390 0 0.963999 -1.571593</pose>
+
+      <link name='overhead_camera_link'>
+        <sensor name='camera_sensor' type='camera'>
+          <always_on>1</always_on>
+          <update_rate>20</update_rate>
+
+          <camera>
+            <horizontal_fov>1.75</horizontal_fov>
+            <image>
+              <width>1280</width>
+              <height>720</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+          </camera>
+
+          <visualize>1</visualize>
+          <topic>/overhead_camera/image_raw</topic>
+
+          <plugin name='gazebo_ros_camera' filename='libgazebo_ros_camera.so'>
+            <always_on>true</always_on>
+            <update_rate>30</update_rate>
+            <camera_name>overhead_camera</camera_name>
+            <image_topic_name>image_raw</image_topic_name>
+            <camera_info_topic_name>camera_info</camera_info_topic_name>
+            <frame_name>overhead_camera_link</frame_name>
+          </plugin>
+
+        </sensor>
+
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+
+
+    <!-- El robot (turtlebot3_waffle_aruco) no está aquí: lo añade eurobot_world.launch.py
+         con el ArUco elegido en el argumento aruco:=51..59 -->
+
+  </world>
+</sdf>

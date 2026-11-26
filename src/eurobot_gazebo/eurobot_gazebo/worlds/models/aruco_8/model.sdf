@@ -1,0 +1,51 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='aruco_8'>
+    <!-- Para poder moverlo y rotarlo -->
+    <static>false</static>
+
+    <link name='aruco_link'>
+
+      <collision name='collision'>
+        <geometry>
+          <box>
+            <!-- Rectángulo cuadrado y muy fino -->
+            <size>0.125 0.125 0.001</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name='aruco_visual'>
+        <geometry>
+          <box>
+            <!-- Igual que la colisión: 15 cm x 15 cm x 1 mm -->
+            <size>0.125 0.125 0.001</size>
+          </box>
+        </geometry>
+
+        <!-- Aplicamos textura SOLO a la cara frontal -->
+        <material>
+          <script>
+            <uri>model://aruco_8/materials/scripts/</uri>
+            <uri>model://aruco_8/materials/textures/</uri>
+            <name>aruco_8/aruco_8_material</name>
+          </script>
+        </material>
+      </visual>
+
+      <!-- Que pese algo para moverlo fácil -->
+      <inertial>
+        <mass>0.01</mass>
+        <inertia>
+          <ixx>0.00001</ixx>
+          <iyy>0.00001</iyy>
+          <izz>0.00001</izz>
+        </inertia>
+      </inertial>
+
+      <!-- ORIENTACIÓN VERTICAL -->
+      <pose>0 0 0 0 0 1.5708</pose>
+
+    </link>
+  </model>
+</sdf>

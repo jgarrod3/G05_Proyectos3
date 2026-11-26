@@ -1,0 +1,13 @@
+material eurobot_ground/eurobot_material
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture suelo_eurobot.png
+      }
+    }
+  }
+}
